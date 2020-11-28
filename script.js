@@ -145,8 +145,11 @@ let canvas = document.getElementById("canvas"), context = canvas.getContext("2d"
     // ****************************
     function drawTetromino(tetro, isPreview = false) {
       context.fillStyle = isPreview ? "#FFFFFF33" : colors[tetro.type];
-      for (let block of tetro.blocks)
+      context.strokeStyle = "#000";
+      for (let block of tetro.blocks) {
         context.fillRect((tetro.x + block.x) * blockSize.width, (tetro.y + block.y) * blockSize.height, blockSize.width, blockSize.height);
+        context.strokeRect((tetro.x + block.x) * blockSize.width, (tetro.y + block.y) * blockSize.height, blockSize.width, blockSize.height);
+      }
     }
 
     function drawPreviewTetromino(tetro) {
@@ -162,6 +165,8 @@ let canvas = document.getElementById("canvas"), context = canvas.getContext("2d"
           if (val) {
             context.fillStyle = colors[val - 1];
             context.fillRect(x * blockSize.width, y * blockSize.height, blockSize.width, blockSize.height);
+            context.strokeStyle = "#000";
+            context.strokeRect(x * blockSize.width, y * blockSize.height, blockSize.width, blockSize.height);
           }
         }
       }
